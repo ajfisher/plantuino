@@ -35,7 +35,12 @@ Serial Garduino
 Usage
 .....
 
+- Plug the shield (or attach the components via a breadboard) to the arduino and connect the arduino to your computer.
+- Connect your various sensors
+- Download the garduino_shield_demo.pde sketch and upload it to the arduino.
+- Open up your serial monitor (in Arduino IDE or using a serial application such as screen from a Linux terminal)
+- You should now see all the details coming from your various sensors. 
 
-
+Networked Garduino
 
 
