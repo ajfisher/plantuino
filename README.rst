@@ -30,7 +30,7 @@ All
 Serial Garduino
 ---------------
 
-- An arduino connected to a serial port of the computer you want to log the data to.
+An arduino connected to a serial port of the computer you want to log the data to. This is a good test to see that the shield it all working correctly and you are getting the right data. Also useful to ensure calibration of your thermistor.
 
 Usage
 .....
@@ -41,6 +41,20 @@ Usage
 - Open up your serial monitor (in Arduino IDE or using a serial application such as screen from a Linux terminal)
 - You should now see all the details coming from your various sensors. 
 
-Networked Garduino
+Networked Garduino Simple
+-------------------------
 
+An Arduiono connected to a network connection that you want to see the data it is reporting just like the serial version above. A good starting point to ensure your senor can network appropriately.
+
+Dependencies
+............
+
+Get an Arduino Ethernet Shield such as the official many other, I personally prefer to use the EtherTen from FreeTronics as it gives you an Arduino and Ethernet on the same board which saves vertical height (http://www.freetronics.com/products/etherten)
+
+Arduino networking is out of the scope of this doc, see the Arduino Playground for a good primer and also play with the Arduino IDE Ethernet examples to ensure your board is working. See http://www.arduino.cc/playground/Main/InterfacingWithHardware#ethernet for more.
+
+Usage
+.....
+
+- 
 

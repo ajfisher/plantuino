@@ -1,4 +1,8 @@
-Version 0.1 (26/06/2011)
+Version 0.2 (June 26 2011)
 
-Initial commit of work done to date particularly the serial code
+- Added a simple networked version of the Garduino such that it can report the values coming back if you hit it with a web browser. - ajfisher
+
+Version 0.1 (Apr - June 2011)
+
+- Initial commit of work done to date particularly the serial code - ajfisher
 
