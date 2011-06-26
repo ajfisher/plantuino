@@ -17,4 +17,25 @@ The long term plan for this project is to encompass the following:
 - Hook up to a weather feed in order to determine if the plants will need water
 - Using solenoid valves to control a watering system to the individual plants.
 
+Dependencies and usage
+======================
+
+All
+---
+
+- The AnalogMuxDeMux library available from github.com/ajfisher/arduino-analog-multiplexer/
+- An Arduino (will work with Duemilanove or Uno or similar) fitted with a shield with schematic in this folder connect up to 8 probes, a temperature sensor and a light senor. 
+
+
+Serial Garduino
+---------------
+
+- An arduino connected to a serial port of the computer you want to log the data to.
+
+Usage
+.....
+
+
+
+
 
