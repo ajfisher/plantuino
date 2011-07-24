@@ -19,6 +19,8 @@
 // do the setup for the networking
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xEE }; // make sure this is a unique MAC
 byte ip[] = { 10,0,1, 52 }; // make sure this is correct for your LAN
+byte gateway[] = {10,0,1,1};
+byte subnet[] = { 255, 255, 0, 0 };
 
 // Initialize the Ethernet server library
 // with the IP address and port you want to use 
@@ -36,7 +38,7 @@ AnalogMux amux(4,3,2, MOISTURE); // S0 D4, S1 D3, S2 D2
 
 void setup(){
   
-  Ethernet.begin(mac, ip);
+  Ethernet.begin(mac, ip, gateway, subnet);
   server.begin();
 }
 
