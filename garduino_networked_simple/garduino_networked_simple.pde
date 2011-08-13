@@ -91,8 +91,10 @@ void loop() {
 void OutputData(Client client) {
   // this function just simply prints out all of the data into formatted HTML to 
   // the client that is passed to it
-  client.print("<html><head><title>Garduino</title></head><body>");
+  client.print("<html><head><title>Garduino</title>");
 
+  client.print("<link rel=\"stylesheet\" href=\"http://maker.ajfisher.me/garduino/styles.css\" media=\"screen\"/>");
+  client.print("</html><body>");
   client.print("<h1>Garduino Data</h1>");
   client.print("<p>From networked <a href=\"http://github.com/ajfisher/garduino\">Garduino project</a></p>");
   client.print("<h2>Moisture</h2>");

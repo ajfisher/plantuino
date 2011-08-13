@@ -57,7 +57,7 @@ Usage
 .....
 
 - Plug the garduino circuit into the ethernet / arduino combination - ensure your ethernet shield has worked on your network first so as to reduce possible bugs.
-- Open up garduino_networked_simple.pde and set a MAC address that is unique on your network as well as setting the IP bytes as per your LAN
-- Save and upload the code to yourn arduino.
+- Open up garduino_networked_simple.pde and set a MAC address that is unique on your network as well as setting the IP, subnet and gateway bytes as per your LAN
+- Save and upload the code to your arduino.
 - Open a web browser and go to the IP address that you specified in your code. You should get a page that displays the current state of your code. Note that there is a reference in there to a style sheet on my server so you don't need to serve it from your arduino... 
 
