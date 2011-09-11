@@ -8,7 +8,7 @@
   
   http://maker.ajfisher.me
   
-  Version: 0.1
+  Version: 0.2
 **/
 
 
@@ -45,11 +45,20 @@ void setup(){
 
 void loop() {
 
-
-  // this client set up directly used from the Example code - thanks Arduino
-  // team for building a good fast little server
   Client client = server.available();
   if (client) {
+    process_connection(client);
+  }
+  
+}
+
+
+void process_connection(Client client) {
+    // takes a client and then gets all the data values for it.
+
+    // this client set up directly used from the Example code - thanks Arduino
+    // team for building a good fast little server  
+  
     // an http request ends with a blank line
     boolean currentLineIsBlank = true;
     while (client.connected()) {
@@ -65,7 +74,7 @@ void loop() {
           client.println();
 
           // DO OUR GARDUINO STUFF HERE
-          OutputData(client);
+          output_data(client);
           break;
         }
         if (c == '\n') {
@@ -81,14 +90,11 @@ void loop() {
     // give the web browser time to receive the data
     delay(1);
     // close the connection:
-    client.stop();
-  }
-  
-  
+    client.stop();  
   
 }
 
-void OutputData(Client client) {
+void output_data(Client client) {
   // this function just simply prints out all of the data into formatted HTML to 
   // the client that is passed to it
   client.print("<html><head><title>Garduino</title>");
