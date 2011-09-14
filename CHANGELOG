@@ -1,3 +1,9 @@
+Version 0.3 (September 14 2011)
+
+- Tweaked the networked version of the example
+- Added example pushing data to thingspeak
+- Added data pushing data to pachube
+
 Version 0.2 (June 26 2011)
 
 - Added a simple networked version of the Garduino such that it can report the values coming back if you hit it with a web browser. - ajfisher
