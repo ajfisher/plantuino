@@ -12,7 +12,8 @@
           put in your details and you'll need to overwrite might API key to make it work
           
   Note: Because TS is limited to only 8 variables on a channel this example simply uploads the moisture vals
-        leaving temp and light for the moment.
+        leaving temp and light for the moment. If you don't have 8 moisture sensors then just flip out
+        the last two or so and add temp and light in there too.
  
  Additional Credits: Example Thingspeak sketch from Hans Scharler
                      Example sketches from Tom Igoe and David A. Mellis
@@ -90,6 +91,9 @@ void loop()
       thingspeakStr += String(pin+1, DEC);
       thingspeakStr += "=" + String(amux.AnalogRead(pin), DEC);
       thingspeakStr += "&";
+      Serial.print(pin);
+      Serial.print(":");
+      Serial.println(amux.AnalogRead(pin));
     }
     updateThingSpeak(thingspeakStr);
   }
