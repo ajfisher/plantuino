@@ -106,7 +106,7 @@ Usage
 
     #define MAX_DATASTREAM_NUM 4
     
-    to be::
+    to be:
     
     #define MAX_DATASTREAM_NUM 10
     
