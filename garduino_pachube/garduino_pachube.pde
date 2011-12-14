@@ -4,39 +4,43 @@
   
   Author: Andrew Fisher
           
-  Date: 15 September 2011
+  Date: 14 December 2011
   
   http://maker.ajfisher.me
   
-  Version: 0.1
+  Version: 0.3
 
   Uses the Arduino Pachube library, ERxPachube. See http://code.google.com/p/pachubelibrary/ for more details
   and to get the library.
   
   you'll need a pachube account and api key: http://www.pachube.com
   
-  If you don't have a paid account then you'll only be able to sync 4 data streams. The library will take care of this and
-  so will pachube as they will just ignore the remaining ones. You can see what comes back in the status.
+  You don't need a paid account with Pachube any more so have as many feeds as you'd like.
   
   Create a feed using the structure as per http://pachube.com/feeds/21503
 
   requires ethernet connection
 
-
 */
+//#define DEBUG
+
+#ifdef DEBUG
+  #define DEBUG_PRINT(x)     Serial.print (x)
+  #define DEBUG_PRINTDEC(x)     Serial.print (x, DEC)
+  #define DEBUG_PRINTLN(x)  Serial.println (x)
+#else
+  #define DEBUG_PRINT(x)
+  #define DEBUG_PRINTDEC(x)
+  #define DEBUG_PRINTLN(x)
+#endif  
+
 
 #include "ERxPachube.h"
 #include <Ethernet.h>
 #include <SPI.h>
 #include <analogmuxdemux.h>
+#include "config.h" //config file for you to stick all your data into - check config.h.sample for reqs.
 
-byte mac[] = { 0xCC, 0xAC, 0xBE, 0xEF, 0xFE, 0x91 }; // make sure this is unique on your network
-byte ip[] = { 10,0,1, 52 }; // make sure this is correct for your LAN
-byte gateway[] = {10,0,1,1};
-byte subnet[] = { 255, 255, 0, 0 };
-
-#define PACHUBE_API_KEY				"PUT YOUR KEY IN HERE"// fill in your API key PACHUBE_API_KEY
-#define PACHUBE_FEED_ID				21503 // fill in your feed id
 
 ERxPachubeDataOut dataout(PACHUBE_API_KEY, PACHUBE_FEED_ID);
 
@@ -51,33 +55,54 @@ ERxPachubeDataOut dataout(PACHUBE_API_KEY, PACHUBE_FEED_ID);
 
 AnalogMux amux(4,3,2, MOISTURE); // S0 D4, S1 D3, S2 D2
 
-
 void PrintDataStream(const ERxPachube& pachube);
+
+#define MASTER_RESET_COUNT 60
+#define TIME_BETWEEN_UPDATES 60000
+
+int resetCounter = 0;
+int noPosts = 0; // used to see how many times we've posted. If we get to 60 then do a reset anyway.
+
 
 void setup() {
 
-	Serial.begin(9600);
+        #ifdef DEBUG
+          Serial.begin(9600);
+        #endif
 	Ethernet.begin(mac, ip);
 
         for (int i=0; i<10; i++){
         	dataout.addData(i);
         }
-
 }
 
 void loop() {
 
-	Serial.println("+++++++++++++++++++++++++++++++++++++++++++++++++");
+	DEBUG_PRINTLN("+++++++++++++++++++++++++++++++++++++++++++++++++");
 
         get_readings();
         
 	int status = dataout.updatePachube();
 
-	Serial.print("sync status code <OK == 200> => ");
-	Serial.println(status);
+        DEBUG_PRINT("sync status code <OK == 200> => ");
+	DEBUG_PRINTLN(status);
+        
+        if (status == 200) {
+              PrintDataStream(dataout);
+              resetCounter = 0;
+              noPosts++;
+              if (noPosts > MASTER_RESET_COUNT) {
+                noPosts = 0;
+                resetEthernetShield();
+              }
+        } else {
+            resetCounter++;
+            if (resetCounter > 5) { resetEthernetShield(); }
+        }
 
-	PrintDataStream(dataout);
-        double waittime = 60000;
+
+
+        double waittime = TIME_BETWEEN_UPDATES;
 	delay(waittime);
 }
 
@@ -93,23 +118,23 @@ void get_readings() {
   float Temp = log(Resistance); // Saving the Log(resistance) so not to calculate  it 4 times later
   Temp = 1 / (0.001129148 + (0.000234125 * Temp) + (0.0000000876741 * Temp * Temp * Temp));
   Temp = Temp - 273.15;  // Convert Kelvin to Celsius
-  Serial.print("Temp: ");
-  Serial.println(Temp);
+  DEBUG_PRINT("Temp: ");
+  DEBUG_PRINTLN(Temp);
   
   dataout.updateData(0, Temp);
   
   // now light
-  Serial.print("Light: ");
-  Serial.println(analogRead(LIGHT));
+  DEBUG_PRINT("Light: ");
+  DEBUG_PRINTLN(analogRead(LIGHT));
   dataout.updateData(1, analogRead(LIGHT));
   
   // now we iterate over the moisture sensors
-  Serial.println("Moisture:");
+  DEBUG_PRINTLN("Moisture:");
   for (int pin = 0; pin<NO_PINS; pin++) {
-    Serial.print("Channel ");
-    Serial.print(pin);
-    Serial.print(": ");
-    Serial.println(amux.AnalogRead(pin));
+    DEBUG_PRINT("Channel ");
+    DEBUG_PRINT(pin);
+    DEBUG_PRINT(": ");
+    DEBUG_PRINTLN(amux.AnalogRead(pin));
     dataout.updateData(pin+2, amux.AnalogRead(pin));
   }
 
@@ -120,15 +145,24 @@ void get_readings() {
 void PrintDataStream(const ERxPachube& pachube)
 {
 	unsigned int count = pachube.countDatastreams();
-	Serial.print("data count=> ");
-	Serial.println(count);
+	DEBUG_PRINT("data count=> ");
+	DEBUG_PRINTLN(count);
 
-	Serial.println("<id>,<value>");
+	DEBUG_PRINTLN("<id>,<value>");
 	for(unsigned int i = 0; i < count; i++)
 	{
-		Serial.print(pachube.getIdByIndex(i));
-		Serial.print(",");
-		Serial.print(pachube.getValueByIndex(i));
-		Serial.println();
+		DEBUG_PRINT(pachube.getIdByIndex(i));
+		DEBUG_PRINT(",");
+		DEBUG_PRINT(pachube.getValueByIndex(i));
+		DEBUG_PRINTLN();
 	}
+}
+
+void resetEthernetShield()
+{
+  DEBUG_PRINTLN("Resetting Ethernet Shield.");   
+  
+  delay(5000);
+  Ethernet.begin(mac, ip, gateway, subnet);
+  delay(5000);
 }
