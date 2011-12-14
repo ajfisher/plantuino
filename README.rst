@@ -111,9 +111,10 @@ Usage
     #define MAX_DATASTREAM_NUM 10
     
 - Plug the garduino circuit into the ethernet / arduino combination - ensure your ethernet shield has worked on your network first so as to reduce possible bugs.
-- Open up garduino_pachube.pde and set a MAC address that is unique on your network as well as setting the IP, subnet and gateway bytes as per your LAN
-- Set your API key as per instructions in the code.
-- Set your Feed ID as per instructions in the code
+- Copy the config.h.sample file to config.h and change the following::
+    - set a MAC address that is unique on your network as well as setting the IP, subnet and gateway bytes as per your LAN
+    - Set your API key as per instructions in the code.
+    - Set your Feed ID as per instructions in the code
 - Save and upload the code to your arduino.
 - You should now be able to go to your feed on Pachube and see your data flow in
 
