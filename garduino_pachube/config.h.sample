@@ -1,0 +1,13 @@
+#ifndef __CONFIG_H__
+#define __CONFIG_H__
+
+// network parameters
+byte mac[] = { 0xCC, 0xAC, 0xBE, 0xEF, 0xFE, 0x91 }; // make sure this is unique on your network
+byte ip[] = { 0,0,0,0 }; // make sure this is correct for your LAN
+byte gateway[] = {0,0,0,0}; // set this to the router or gateway on your LAN
+byte subnet[] = { 255,255,255,0}; // may need changing.
+
+#define PACHUBE_API_KEY	"ENTER YOUR API KEY HERE"
+#define PACHUBE_FEED_ID	//FEED ID HERE 
+
+#endif
