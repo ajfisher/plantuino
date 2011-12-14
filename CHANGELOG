@@ -1,14 +1,23 @@
+Version 0.4 (December 14, 2011)
+-------------------------------
+
+- Modified pachube version to use an external config file so you can easily update the keys and network settings etc.
+- Updated code to test for failures and reset as well as do a periodic reset to clear the ethernet module as it seems like a problem periodically.
+
 Version 0.3 (September 14 2011)
+-------------------------------
 
 - Tweaked the networked version of the example
 - Added example pushing data to thingspeak
 - Added example pushing data to pachube
 
 Version 0.2 (June 26 2011)
+--------------------------
 
 - Added a simple networked version of the Garduino such that it can report the values coming back if you hit it with a web browser. - ajfisher
 
 Version 0.1 (Apr - June 2011)
+-----------------------------
 
 - Initial commit of work done to date particularly the serial code - ajfisher
 
