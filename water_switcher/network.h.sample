@@ -1,0 +1,10 @@
+#ifndef __NETWORK_CONFIG_H__
+#define __NETWORK_CONFIG_H__
+
+// Enter a MAC address and IP address for your controller below.
+// The IP address will be dependent on your local network:
+byte mac[] = { 0xDE, 0xA1, 0xBC, 0xEF, 0xFA, 0x2E }; 
+byte ip[] = { <YOUR IP ADDRESS> };
+byte gateway[] = { <YOUR GATEWAY >};
+byte subnet[] = { <YOUR SUBNET >};
+#endif
