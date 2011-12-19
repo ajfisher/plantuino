@@ -1,6 +1,6 @@
 /*
 
-  Multiplexed Garduino Sensor uploading data to Pachube.
+  Multiplexed Plantuino Sensor uploading data to Pachube.
   
   Author: Andrew Fisher
           

@@ -1,6 +1,6 @@
 /*
 
-  Garduino using a thingspeak client to send the data to.
+  Plantuino using a thingspeak client to send the data to.
   
   Author: Andrew Fisher
   
@@ -43,7 +43,7 @@ long lastConnectionTime = 0;
 boolean lastConnected = false;
 int resetCounter = 0;
 
-// Garduino set up
+// Plantuino set up
 // Set up the analog sensors
 #define MOISTURE 0
 #define TEMP 1

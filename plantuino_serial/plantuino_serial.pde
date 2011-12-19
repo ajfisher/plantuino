@@ -1,5 +1,5 @@
 /**
-  Multiplexed Garduino Sensor
+  Multiplexed Plantuino Sensor
   Author: Andrew Fisher 
           Adapted from various others in the public domain, notably
           an article in Make Magazine 18 (www.makezine.com) that discussed 

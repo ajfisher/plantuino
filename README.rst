@@ -1,12 +1,14 @@
-========
-Garduino
-========
+=========
+Plantuino
+=========
 
 This project was inspired heavily by a makezine article that looked at building a garden automation system to grow a plant including switching lights on and off etc. This version of it is more around the idea of an outdoor garden already that the user wants to have some interactions with. 
 
 In this current iteration it is mostly oriented towards simply building a sensor array for moisture, temperature and light and logging that whether to a serial connection or making it available over the network.
 
 Examples also include pushing data to Pachube and Thingspeak in order to capture and display the data using a web service.
+
+There is also capacity for the system to control an irrigation system to allow it to water.
 
 Roadmap
 =======
@@ -27,7 +29,7 @@ All
 - An Arduino (will work with Duemilanove or Uno or similar) fitted with a shield with schematic in this folder connect up to 8 probes, a temperature sensor and a light senor. 
 
 
-Serial Garduino
+Serial Plantuino
 ---------------
 
 An arduino connected to a serial port of the computer you want to log the data to. This is a good test to see that the shield it all working correctly and you are getting the right data. Also useful to ensure calibration of your thermistor.
@@ -37,14 +39,14 @@ Usage
 
 - Plug the shield (or attach the components via a breadboard) to the arduino and connect the arduino to your computer.
 - Connect your various sensors
-- Download the garduino_shield_demo.pde sketch and upload it to the arduino.
+- Download the plantuino_serial.pde sketch and upload it to the arduino.
 - Open up your serial monitor (in Arduino IDE or using a serial application such as screen from a Linux terminal)
 - You should now see all the details coming from your various sensors. 
 
-Networked Garduino Simple
+Networked Plantuino Simple
 -------------------------
 
-An Arduino connected to a network connection that you want to see the data it is reporting just like the serial version above. A good starting point to ensure your senor can network appropriately.
+An Arduino connected to a network connection that you want to see the data it is reporting just like the serial version above. A good starting point to ensure your sensor can network appropriately.
 
 Dependencies
 ............
@@ -56,12 +58,12 @@ Arduino networking is out of the scope of this doc, see the Arduino Playground f
 Usage
 .....
 
-- Plug the garduino circuit into the ethernet / arduino combination - ensure your ethernet shield has worked on your network first so as to reduce possible bugs.
-- Open up garduino_networked_simple.pde and set a MAC address that is unique on your network as well as setting the IP, subnet and gateway bytes as per your LAN
+- Plug the plantuino circuit into the ethernet / arduino combination - ensure your ethernet shield has worked on your network first so as to reduce possible bugs.
+- Open up plantuino_networked_simple.pde and set a MAC address that is unique on your network as well as setting the IP, subnet and gateway bytes as per your LAN
 - Save and upload the code to your arduino.
 - Open a web browser and go to the IP address that you specified in your code. You should get a page that displays the current state of your code. Note that there is a reference in there to a style sheet on my server so you don't need to serve it from your arduino... 
 
-Thingspeak Garduino
+Thingspeak Plantuino
 --------------------
 
 An Arduino connected to the Internet that pushes data up to Thingpseak for display or other usage.
@@ -69,20 +71,20 @@ An Arduino connected to the Internet that pushes data up to Thingpseak for displ
 Dependencies
 ............
 
-- A Garduino set up that functions as per the Networked Simple Garduino set up above.
+- A Plantuino set up that functions as per the Networked Simple Plantuino set up above.
 - A user account on Thingspeak (http://www.thingspeak.com)
 - Your write key from Thingspeak
 
 Usage
 ......
 
-- Plug the garduino circuit into the ethernet / arduino combination - ensure your ethernet shield has worked on your network first so as to reduce possible bugs.
-- Open up garduino_thingspeak.pde and set a MAC address that is unique on your network as well as setting the IP, subnet and gateway bytes as per your LAN
+- Plug the plantuino circuit into the ethernet / arduino combination - ensure your ethernet shield has worked on your network first so as to reduce possible bugs.
+- Open up plantuino_thingspeak.pde and set a MAC address that is unique on your network as well as setting the IP, subnet and gateway bytes as per your LAN
 - Set your API write key as per instructions in the code.
 - Save and upload the code to your arduino.
 - You should now be able to go to your feed on Thingspeak and see your data flowing in.
 
-Pachube Garduino
+Pachube plantuino
 -----------------
 
 An Arduino connected to the Internet that pushes data up to Pachube for display or other usage such as setting triggers for events etc.
@@ -90,7 +92,7 @@ An Arduino connected to the Internet that pushes data up to Pachube for display 
 Dependencies
 ............
 
-- A Garduino set up that functions as per the Networked Simple Garduino set up above.
+- A plantuino set up that functions as per the Networked Simple Plantuino set up above.
 - A user account on Pachube (http://www.pachube.com). Note a free account is sufficient but you can only have 5 data streams.
 - Your Pachube API key
 - Your Pachube Feed ID
@@ -108,7 +110,7 @@ Usage
     
     #define MAX_DATASTREAM_NUM 10
     
-- Plug the garduino circuit into the ethernet / arduino combination - ensure your ethernet shield has worked on your network first so as to reduce possible bugs.
+- Plug the plantuino circuit into the ethernet / arduino combination - ensure your ethernet shield has worked on your network first so as to reduce possible bugs.
 - Copy the config.h.sample file to config.h and change the following::
     - set a MAC address that is unique on your network as well as setting the IP, subnet and gateway bytes as per your LAN
     - Set your API key as per instructions in the code.

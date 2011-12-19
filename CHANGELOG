@@ -2,6 +2,7 @@ Version 0.5 (December 19, 2011)
 -------------------------------
 
 - Added new sketch that allows a second arduino connected to network to control a wireless remote control in order to pump water via a restful interface.
+- Name change to Plantuino
 
 Version 0.4 (December 14, 2011)
 -------------------------------
@@ -19,7 +20,7 @@ Version 0.3 (September 14 2011)
 Version 0.2 (June 26 2011)
 --------------------------
 
-- Added a simple networked version of the Garduino such that it can report the values coming back if you hit it with a web browser. - ajfisher
+- Added a simple networked version of the Plantuino such that it can report the values coming back if you hit it with a web browser. - ajfisher
 
 Version 0.1 (Apr - June 2011)
 -----------------------------
