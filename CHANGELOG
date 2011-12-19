@@ -1,3 +1,8 @@
+Version 0.5 (December 19, 2011)
+-------------------------------
+
+- Added new sketch that allows a second arduino connected to network to control a wireless remote control in order to pump water via a restful interface.
+
 Version 0.4 (December 14, 2011)
 -------------------------------
 

@@ -15,9 +15,7 @@ The long term plan for this project is to encompass the following:
 
 - Using ZigBee to communicate to a base station to allow for non-wired comms
 - Developing a reporting API to submit the data to various applications (this will probably be related to Pachube somehow)
-- Have individual plants tweet or message otherwise when they need water
 - Hook up to a weather feed in order to determine if the plants will need water
-- Using solenoid valves to control a watering system to the individual plants.
 
 Dependencies and usage
 ======================
@@ -118,4 +116,40 @@ Usage
 - Save and upload the code to your arduino.
 - You should now be able to go to your feed on Pachube and see your data flow in
 
+Watering System
+================
 
+The watering system is designed to turn a drip feed irrigation system on and off in order to water the plants. This is controlled via a second arduino that is connected to the network and uses a relay shield to turn a remote control on and off. 
+
+Details on how to do the wireless plug socket hack can be found here: http://www.practicalarduino.com/projects/appliance-remote-control
+
+Setting up an irrigation system is an exercise for the implementer however all this is doing is simply switching a pump on and off as required.
+
+Each relay is bound to a digital IO pin on the Arduino, in this case 2 & 3. Pulling 2 high will switch the pump on, pulling pin 3 high will switch the pump off.
+
+Using a sketch adapted from https://gist.github.com/1290670 a restful interface is created by defining the channels you want and then making HTTP calls to them.
+
+Usage:
+------
+
+- Set up your irrigation system and make sure it works with the standard wireless remote
+- Set up your arduino with a relay shield per the link above. Use a simple controller sketch to make sure you can switch the pump on and off via the arduino and your relay shield works properly.
+- Copy network.sample to network.h and fill in the relevant details for your network.
+- Define your channels, assigning a pin in order to each channel.
+- Compile and load the sketch onto your arduino
+
+You should be able to ping your Arduino's IP address if it's working correctly. From there direct your browser to:
+
+    http://your-ip/channel-no
+    
+Where channel-no is the relay channel you want to control.
+
+EG: In my network to turn on my pump I use this URL:
+
+    http://10.0.1.57/0
+    
+And to turn it off:
+
+    http://10.0.1.57/1
+    
+You can increase this to however many channels and pins you want to connect so if you had 8 relays you could use all the digital pins available if you wanted.
