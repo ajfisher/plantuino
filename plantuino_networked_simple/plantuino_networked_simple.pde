@@ -102,7 +102,7 @@ void output_data(Client client) {
   client.print("<link rel=\"stylesheet\" href=\"http://maker.ajfisher.me/garduino/styles.css\" media=\"screen\"/>");
   client.print("</html><body>");
   client.print("<h1>Plantuino Data</h1>");
-  client.print("<p>From networked <a href=\"http://github.com/ajfisher/garduino\">Plantuino project</a></p>");
+  client.print("<p>From networked <a href=\"http://github.com/ajfisher/plantuino\">Plantuino project</a></p>");
   client.print("<h2>Moisture</h2>");
   client.print("<ul id=\"moisture\">");
   for (int pin=0; pin<NO_PINS; pin++){

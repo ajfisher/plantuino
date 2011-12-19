@@ -10,6 +10,8 @@ Examples also include pushing data to Pachube and Thingspeak in order to capture
 
 There is also capacity for the system to control an irrigation system to allow it to water.
 
+Most up to date version of this project can be found at: https://github.com/ajfisher/plantuino
+
 Roadmap
 =======
 
